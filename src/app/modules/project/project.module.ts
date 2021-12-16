@@ -6,6 +6,9 @@ import { ProjectComponent } from './project.component';
 import { OverviewComponent } from './overview/overview.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faPlusSquare } from '@fortawesome/free-regular-svg-icons';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -18,7 +21,14 @@ import { ProjectDetailComponent } from './project-detail/project-detail.componen
   ],
   imports: [
     CommonModule,
-    ProjectRoutingModule
+    ProjectRoutingModule,
+    FontAwesomeModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
-export class ProjectModule { }
+export class ProjectModule {
+  constructor(private library: FaIconLibrary){
+    library.addIcons(faPlusSquare)
+  }
+}

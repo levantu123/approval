@@ -11,4 +11,7 @@ export class ProjectService {
   getAll(){
       return this.http.get(`api/projects`)
   }
+  create(project: any){
+    return this.http.post(`api/projects`,project)
+  }
 }

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faFolder, faUser, faListAlt } from '@fortawesome/free-regular-svg-icons';
+import { faFolder, faUser, faListAlt, faPlusSquare } from '@fortawesome/free-regular-svg-icons';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +24,6 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class AppModule {
   constructor(private library: FaIconLibrary){
-    library.addIcons(faFolder, faUser, faListAlt)
+    library.addIcons(faFolder, faUser, faListAlt, faPlusSquare)
   }
  }

@@ -5,14 +5,52 @@
     <div *ngIf="projects | async as data">
         <div *ngFor="let project of data._embedded.projects" class="list-container">
             <div class="item in-progress" [routerLink]="['/details', project.id]">
-                <span class="item-name">{{ project.projectName }}</span>
+                <span class="item-name">
+                    <fa-icon [icon]="['far', 'plus-square']"></fa-icon>{{ project.projectName }}
+                </span>
                 <span [class]="project.status">{{ project.status }}</span>
                 <span [class]="project.priority">{{ project.priority }}</span>
+                <div class="progress">
+                    <div class="progress-bar"></div>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="add-item">
-        <button>Add project</button>
+        <button (click)="toggleAddProjectForm()">Add project</button>
     </div>
 </nav>
+<div [class]="modalClass">
+    <form [formGroup]="createForm" (ngSubmit)="addProject()" class="modal-content">
+        <div class="modal-header">
+            <span (click)="toggleAddProjectForm()" class="close">&times;</span>
+            <p>New Project</p>
+        </div>
+        <div class="container modal-body">
+            <div class="h-container">
+                <div><span class="label">Name</span><input minlength="5" required formControlName="projectName"
+                        type="text"></div>
+                <div *ngIf="createForm.invalid && (createForm.dirty || createForm.touched)" class="alert">
+                </div>
+                <div><span class="label">Owner</span><input formControlName="owner" required type="number"></div>
+                <div><span class="label">Category</span><input formControlName="category" required type="text">
+                </div>
+                <div><span class="label">Priority</span><input formControlName="priority" required type="text">
+                </div>
+            </div>
+            <div class="h-container">
+                <div><span class="label">Start</span><input formControlName="startDate" required type="date"></div>
+                <div><span class="label">End</span><input formControlName="endDate" required type="date"></div>
+                <div><span class="label">Budget</span><input formControlName="budget" required type="number"></div>
+                <div><span class="label">Budget In Days</span><input formControlName="budgetIndays" required
+                        type="number"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn success"  type="submit">Submit</button> <button
+                class="btn warning">Cancel</button>
+        </div>
+    </form>
+
+</div>
